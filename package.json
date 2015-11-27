@@ -1,0 +1,32 @@
+{
+  "name": "moment-months",
+  "version": "1.0.0",
+  "description": ":package_description",
+  "main": "lib/moment-months.js",
+  "scripts": {
+    "test": "gulp test",
+    "prepublish": "gulp test && gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spatie/moment-months.git"
+  },
+  "keywords": [
+    "spatie"
+  ],
+  "author": "Sebastian De Deyne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spatie/moment-months/issues"
+  },
+  "homepage": "https://github.com/spatie/moment-months",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.4",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.0",
+    "gulp-eslint": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
