@@ -1,3 +1,4 @@
+import { DAYS } from './enums';
 import moment from 'moment';
 
 import dd from 'dump-die';
@@ -17,9 +18,16 @@ class Month {
     }
 
     /**
+     * @returns {Month}
+     */
+    thisMonth() {
+        return Month.create(this.moment());
+    }
+
+    /**
      * Create a new instance for this month.
      *
-     * @return {Month}
+     * @returns {Month}
      */
     static thisMonth() {
         const now = moment();
@@ -51,7 +59,7 @@ class Month {
      * @returns {Month}
      */
     lastMonth() {
-        return Month.create(this.moment().add(1, 'month'));
+        return Month.create(this.moment().add(-1, 'month'));
     }
 
     /**
@@ -83,40 +91,42 @@ class Month {
         return moment([this.year, this.month, 1]);
     }
 
-    // /**
-    //  * Return an array of 'calendar days'. This array contains 42 days, starting from the first ...
-    //  *
-    //  * @todo
-    //  *
-    //  * @returns {array}
-    //  */
-    // calendarDays(weekStartsOn = DAYS.MONDAY) {
-    //     const current = this.firstCalendarDay;
-    //
-    //     const days = [];
-    //
-    //     do {
-    //         days.push(current.clone());
-    //         current.add(1, 'day');
-    //     } while (days.length < 42);
-    //
-    //     return days;
-    // }
-    //
-    // /**
-    //  * @todo
-    //  *
-    //  * @returns {Moment}
-    //  */
-    // firstCalendarDay(weekStartsOn = DAYS.MONDAY) {
-    //     const firstDay = this.moment();
-    //
-    //     while (firstDay.day() === DAYS.SUNDAY || firstDay.day() > DAYS.MONDAY) {
-    //         firstDay.subtract(1, 'day');
-    //     }
-    //
-    //     return firstDay;
-    // }
+    /**
+     * @returns {Moment}
+     */
+    firstCalendarDay(weekStartsOn = null) {
+        weekStartsOn = weekStartsOn || Month.weekStartsOn
+
+        const firstDay = this.moment();
+
+        while (firstDay.day() !== weekStartsOn) {
+            firstDay.subtract(1, 'day');
+        }
+
+        return firstDay;
+    }
+
+    /**
+     * Return an array of 'calendar days'. This array contains 42 days, starting from the first ...
+     *
+     * @todo
+     *
+     * @returns {array}
+     */
+    calendarDays(weekStartsOn = null) {
+        weekStartsOn = weekStartsOn || Month.weekStartsOn
+
+        const current = this.firstCalendarDay(weekStartsOn);
+
+        const days = [];
+
+        while (days.length < 42) {
+            days.push(current.clone());
+            current.add(1, 'day');
+        }
+
+        return days;
+    }
 
     /**
      * @param {int|string|Moment} month|date|moment
@@ -156,5 +166,7 @@ class Month {
         return Month.thisMonth();
     }
 }
+
+Month.weekStartsOn = DAYS.SUNDAY;
 
 export default Month;

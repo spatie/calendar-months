@@ -1,13 +1,11 @@
 import { assert } from 'chai';
-import { MONTHS } from '../src/enums';
+import { DAYS, MONTHS } from '../src/enums';
 import moment from 'moment';
 import Month from '../src/Month';
 
-import dd from 'dump-die';
-
 describe('Creating an instance of Month', () => {
 
-    it('can create return instance through the `new` keyword', () => {
+    it('returns a new instance through the `new` keyword', () => {
 
         const january = new Month(MONTHS.JANUARY, 2015);
 
@@ -15,7 +13,7 @@ describe('Creating an instance of Month', () => {
         assert.equal(january.year, 2015);
     });
 
-    it('can return an instance through a `create` method', () => {
+    it('returns a new instance through the `create` method', () => {
 
         const december = Month.create(MONTHS.DECEMBER, 2016);
 
@@ -23,7 +21,7 @@ describe('Creating an instance of Month', () => {
         assert.equal(december.year, 2016);
     });
 
-    it('can return an instance for this month', () => {
+    it('returns a new instance for this month', () => {
 
         const now = moment();
         const thisMonth = Month.thisMonth();
@@ -32,7 +30,7 @@ describe('Creating an instance of Month', () => {
         assert.equal(thisMonth.year, now.year());
     });
 
-    it('can return an instance from a `moment` object', () => {
+    it('returns a new instance from a `moment` object', () => {
 
         const february = Month.create(moment('2015-02-17'));
 
@@ -40,7 +38,7 @@ describe('Creating an instance of Month', () => {
         assert.equal(february.year, 2015);
     });
 
-    it('can return an instance from a `date` object', () => {
+    it('returns a new instance from a `date` object', () => {
 
         const february = Month.create(moment('2015-02-17'));
 
@@ -48,7 +46,7 @@ describe('Creating an instance of Month', () => {
         assert.equal(february.year, 2015);
     });
 
-    it('can return an instance from a date string', () => {
+    it('returns a new instance from a date string', () => {
 
         const february = Month.create('2015-02-17');
 
@@ -60,7 +58,6 @@ describe('Creating an instance of Month', () => {
 describe('Formatting a Month', () => {
 
     it('formats to YYYY-MM by default', () => {
-
         assert.equal(Month.create(MONTHS.JANUARY, 2015).format(), '2015-01');
     });
 
@@ -72,78 +69,132 @@ describe('Formatting a Month', () => {
 describe('Getting related Months', () => {
 
     it('returns the next month', () => {
-        assert.equal(Month.create(MONTHS.JANUARY, 2015).nextMonth().month, MONTHS.FEBRUARY);
-        assert.equal(Month.create(MONTHS.JANUARY, 2015).nextMonth().year, 2015);
 
-        assert.equal(Month.create(MONTHS.DECEMBER, 2015).nextMonth().month, MONTHS.JANUARY);
-        assert.equal(Month.create(MONTHS.DECEMBER, 2015).nextMonth().year, 2016);
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2015-02' ],
+            [ Month.create(MONTHS.DECEMBER, 2015), '2016-01' ],
+        ];
+
+        cases.forEach(([ month, result ]) => {
+            assert.equal(month.nextMonth().format(), result);
+        });
+    });
+
+    it('returns the last month', () => {
+
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2014-12' ],
+            [ Month.create(MONTHS.DECEMBER, 2015), '2015-11' ],
+        ];
+
+        cases.forEach(([ month, result ]) => {
+            assert.equal(month.lastMonth().format(), result);
+        });
+    });
+
+    it('returns the current month', () => {
+
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2015-01' ],
+            [ Month.create(MONTHS.DECEMBER, 2015), '2015-12' ],
+        ];
+
+        cases.forEach(([ month, result ]) => {
+            assert.equal(month.thisMonth().format(), result);
+        });
     });
 });
 
-describe('Getting days in the Month', () => {
+describe('Retrieving the first calendar day', () => {
 
-    it('returns it\'s first calendar day', () => {
-        assert.equal(
-            Month.create(MONTHS.JANUARY, 2015).firstCalendarDay().format(),
-            moment([2014, MONTHS.DECEMBER, 29]).format()
-        );
+    it('returns it\'s first calendar day, with weeks starting on a Sunday (default)', () => {
 
-        assert.equal(
-            Month.create(MONTHS.FEBRUARY, 2015).firstCalendarDay().format(),
-            moment([2015, MONTHS.JANUARY, 26]).format()
-        );
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2014-12-28' ],
+            [ Month.create(MONTHS.FEBRUARY, 2015), '2015-02-01' ],
+            [ Month.create(MONTHS.JUNE, 2015), '2015-05-31' ],
+            [ Month.create(MONTHS.FEBRUARY, 2016), '2016-01-31' ],
+            [ Month.create(MONTHS.MARCH, 2016), '2016-02-28' ],
+        ];
 
-        assert.equal(
-            Month.create(MONTHS.JUNE, 2015).firstCalendarDay().format(),
-            moment([2015, MONTHS.JUNE, 1]).format()
-        );
+        cases.forEach(([ month, result ]) => {
+            assert.equal(month.firstCalendarDay().format('YYYY-MM-DD'), result);
+            assert.equal(month.firstCalendarDay(DAYS.SUNDAY).format('YYYY-MM-DD'), result);
+        });
     });
 
-    it('returns an array with all it\'s calendar days', () => {
-        const january = Month.create(MONTHS.JANUARY, 2015).calendarDays();
+    it('returns it\'s first calendar day, with weeks starting on a a Monday', () => {
 
-        assert.lengthOf(january, 42);
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2014-12-29' ],
+            [ Month.create(MONTHS.FEBRUARY, 2015), '2015-01-26' ],
+            [ Month.create(MONTHS.JUNE, 2015), '2015-06-01' ],
+            [ Month.create(MONTHS.FEBRUARY, 2016), '2016-02-01' ],
+            [ Month.create(MONTHS.MARCH, 2016), '2016-02-29' ],
+        ];
 
-        assert.equal(
-            january[0].format(),
-            moment([2014, MONTHS.DECEMBER, 29]).format()
-        );
+        cases.forEach(([ month, result ]) => {
+            assert.equal(month.firstCalendarDay(DAYS.MONDAY).format('YYYY-MM-DD'), result);
+        });
+    });
 
-        assert.equal(
-            january[january.length-1].format(),
-            moment([2015, MONTHS.FEBRUARY, 8]).format()
-        );
+    it('returns it\'s first calendar day, with weeks starting on a a Wednesday', () => {
 
-        const february = Month.create(MONTHS.FEBRUARY, 2015).calendarDays();
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2014-12-31' ],
+            [ Month.create(MONTHS.FEBRUARY, 2015), '2015-01-28' ],
+            [ Month.create(MONTHS.JUNE, 2015), '2015-05-27' ],
+            [ Month.create(MONTHS.FEBRUARY, 2016), '2016-01-27' ],
+            [ Month.create(MONTHS.MARCH, 2016), '2016-02-24' ],
+        ];
 
-        assert.lengthOf(february, 42);
+        cases.forEach(([ month, result ]) => {
+            assert.equal(month.firstCalendarDay(DAYS.WEDNESDAY).format('YYYY-MM-DD'), result);
+        });
+    });
+});
 
-        assert.equal(
-            february[0].format(),
-            moment([2015, MONTHS.JANUARY, 26]).format()
-        );
+describe('Generating an array for a calendar month', () => {
 
-        assert.equal(
-            february[february.length-1].format(),
-            moment([2015, MONTHS.MARCH, 8]).format()
-        );
+    it('returns an array with all it\'s calendar days, with weeks starting on a Sunday', () => {
 
-        const april = Month.create(MONTHS.APRIL, 2015).calendarDays();
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2014-12-28', '2015-02-07' ],
+            [ Month.create(MONTHS.FEBRUARY, 2015), '2015-02-01', '2015-03-14' ],
+            [ Month.create(MONTHS.JUNE, 2015), '2015-05-31', '2015-07-11' ],
+            [ Month.create(MONTHS.FEBRUARY, 2016), '2016-01-31', '2016-03-12' ],
+            [ Month.create(MONTHS.MARCH, 2016), '2016-02-28', '2016-04-09' ],
+        ];
 
-        assert.lengthOf(april, 42);
+        cases.forEach(([ month, start, end ]) => {
+            const days = month.calendarDays(DAYS.SUNDAY);
 
-        assert.equal(
-            april[0].format(),
-            moment([2015, MONTHS.MARCH, 30]).format()
-        );
+            assert.lengthOf(days, 42);
+            assert.equal(days[0].format('YYYY-MM-DD'), start);
+            assert.equal(days[41].format('YYYY-MM-DD'), end);
+        });
+    });
 
-        assert.equal(
-            april[april.length-1].format(),
-            moment([2015, MONTHS.MAY, 10]).format()
-        );
+    it('returns an array with all it\'s calendar days, with weeks starting on a Monday', () => {
+
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2014-12-29', '2015-02-08' ],
+            [ Month.create(MONTHS.FEBRUARY, 2015), '2015-01-26', '2015-03-08' ],
+            [ Month.create(MONTHS.JUNE, 2015), '2015-06-01', '2015-07-12' ],
+            [ Month.create(MONTHS.FEBRUARY, 2016), '2016-02-01', '2016-03-13' ],
+            [ Month.create(MONTHS.MARCH, 2016), '2016-02-29', '2016-04-10' ],
+        ];
+
+        cases.forEach(([ month, start, end ]) => {
+            const days = month.calendarDays(DAYS.MONDAY);
+
+            assert.lengthOf(days, 42);
+            assert.equal(days[0].format('YYYY-MM-DD'), start);
+            assert.equal(days[41].format('YYYY-MM-DD'), end);
+        });
     });
 });
 
 describe('Validating days in the Month', () => {
-
+    
 });
