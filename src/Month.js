@@ -1,8 +1,6 @@
 import { DAYS } from './enums';
 import moment from 'moment';
 
-import dd from 'dump-die';
-
 class Month {
     /**
      * @param {int} month
@@ -14,7 +12,7 @@ class Month {
         const date = moment([year, month, 1]);
 
         this.month = date.month();
-        this.year = date.year();
+        this.year = date.year()
     }
 
     /**
@@ -95,7 +93,7 @@ class Month {
      * @returns {Moment}
      */
     firstCalendarDay(weekStartsOn = null) {
-        weekStartsOn = weekStartsOn || Month.weekStartsOn
+        weekStartsOn = weekStartsOn || Month.weekStartsOn;
 
         const firstDay = this.moment();
 
@@ -114,7 +112,7 @@ class Month {
      * @returns {array}
      */
     calendarDays(weekStartsOn = null) {
-        weekStartsOn = weekStartsOn || Month.weekStartsOn
+        weekStartsOn = weekStartsOn || Month.weekStartsOn;
 
         const current = this.firstCalendarDay(weekStartsOn);
 

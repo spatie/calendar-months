@@ -4,8 +4,8 @@
     "description": ":package_description",
     "main": "lib/moment-months.js",
     "scripts": {
-        "test": "gulp test",
-        "prepublish": "gulp test && gulp build"
+        "test": "gulp lint && gulp test",
+        "prepublish": "npm test && gulp build"
     },
     "repository": {
         "type": "git",

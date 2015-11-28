@@ -194,7 +194,3 @@ describe('Generating an array for a calendar month', () => {
         });
     });
 });
-
-describe('Validating days in the Month', () => {
-    
-});
