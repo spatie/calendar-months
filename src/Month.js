@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+import dd from 'dump-die';
+
 class Month {
     /**
      * @param {int} month
@@ -22,7 +24,7 @@ class Month {
     static thisMonth() {
         const now = moment();
 
-        return Month.createFromMoment(now);
+        return Month.create(now);
     }
 
     /**
@@ -31,7 +33,7 @@ class Month {
      * @returns {Month}
      */
     nextMonth() {
-        return Month.createFromMoment(this.moment().add(1, 'month'));
+        return Month.create(this.moment().add(1, 'month'));
     }
 
     /**
@@ -49,7 +51,7 @@ class Month {
      * @returns {Month}
      */
     lastMonth() {
-        return Month.createFromMoment(this.moment().add(1, 'month'));
+        return Month.create(this.moment().add(1, 'month'));
     }
 
     /**
@@ -137,7 +139,7 @@ class Month {
             if (typeof argument === 'string') {
                 const dateParts = argument.split('-');
 
-                return new Month(dateParts[0], dateParts[1]);
+                return new Month(dateParts[1] - 1, dateParts[0]);
             }
 
             if (moment.isMoment(argument)) {

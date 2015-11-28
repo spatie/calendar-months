@@ -3,6 +3,8 @@ import { MONTHS } from '../src/enums';
 import moment from 'moment';
 import Month from '../src/Month';
 
+import dd from 'dump-die';
+
 describe('Creating an instance of Month', () => {
 
     it('can create return instance through the `new` keyword', () => {
@@ -46,7 +48,7 @@ describe('Creating an instance of Month', () => {
         assert.equal(february.year, 2015);
     });
 
-    it('can return an instance from date string', () => {
+    it('can return an instance from a date string', () => {
 
         const february = Month.create('2015-02-17');
 

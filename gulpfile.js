@@ -5,25 +5,21 @@ const mocha = require('gulp-mocha');
 
 require('babel-core/register');
 
-gulp.task('default', () =>
-    gulp.start('build')
-);
-
 gulp.task('build', () =>
     gulp.src('src/index.js')
         .pipe(babel())
         .pipe(gulp.dest('lib'))
 );
 
-gulp.task('test', () =>
-    gulp.start('lint')
-        .start('test:unit')
-);
-
 gulp.task('lint', () =>
     gulp.src('src/**/*.js')
         .pipe(eslint())
         .pipe(eslint.format())
+);
+
+gulp.task('test', () =>
+    gulp.start('lint')
+        .start('test:unit')
 );
 
 gulp.task('test:unit', () =>
