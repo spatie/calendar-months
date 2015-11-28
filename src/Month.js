@@ -12,7 +12,7 @@ class Month {
         const date = moment([year, month, 1]);
 
         this.month = date.month();
-        this.year = date.year()
+        this.year = date.year();
     }
 
     /**

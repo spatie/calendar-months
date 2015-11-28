@@ -1,10 +1,4 @@
 language: node_js
-
 node_js:
     - 'stable'
     - '4.2'
-
-sudo: false
-
-before_script:
-    - npm install
