@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { DAYS } from './enums';
 
 class Month {
     /**
@@ -8,7 +7,7 @@ class Month {
      * @returns {Month}
      */
     constructor(month, year) {
-        // Creating a moment instance here for free validation
+        // Creating a moment instance here for free validation.
         const date = moment([year, month, 1]);
 
         this.month = date.month();
@@ -16,7 +15,18 @@ class Month {
     }
 
     /**
-     * Return a new Month instance, set one month later.
+     * Create a new instance for this month.
+     *
+     * @return {Month}
+     */
+    static thisMonth() {
+        const now = moment();
+
+        return Month.createFromMoment(now);
+    }
+
+    /**
+     * Return a new Month instance, set one month later than the current instance.
      *
      * @returns {Month}
      */
@@ -25,12 +35,30 @@ class Month {
     }
 
     /**
-     * Return a new Month instance, set one month before.
+     * Return a new Month instance, set one month later than now.
+     *
+     * @returns {Month}
+     */
+    static nextMonth() {
+        return Month.thisMonth().nextMonth();
+    }
+
+    /**
+     * Return a new Month instance, set one month earlier than the current instance.
      *
      * @returns {Month}
      */
     lastMonth() {
-        return Month.createFromMoment(this.moment().add(-1, 'month'));
+        return Month.createFromMoment(this.moment().add(1, 'month'));
+    }
+
+    /**
+     * Return a new Month instance, set one month earlier than now.
+     *
+     * @returns {Month}
+     */
+    static lastMonth() {
+        return Month.thisMonth().lastMonth();
     }
 
     /**
@@ -53,71 +81,77 @@ class Month {
         return moment([this.year, this.month, 1]);
     }
 
+    // /**
+    //  * Return an array of 'calendar days'. This array contains 42 days, starting from the first ...
+    //  *
+    //  * @todo
+    //  *
+    //  * @returns {array}
+    //  */
+    // calendarDays(weekStartsOn = DAYS.MONDAY) {
+    //     const current = this.firstCalendarDay;
+    //
+    //     const days = [];
+    //
+    //     do {
+    //         days.push(current.clone());
+    //         current.add(1, 'day');
+    //     } while (days.length < 42);
+    //
+    //     return days;
+    // }
+    //
+    // /**
+    //  * @todo
+    //  *
+    //  * @returns {Moment}
+    //  */
+    // firstCalendarDay(weekStartsOn = DAYS.MONDAY) {
+    //     const firstDay = this.moment();
+    //
+    //     while (firstDay.day() === DAYS.SUNDAY || firstDay.day() > DAYS.MONDAY) {
+    //         firstDay.subtract(1, 'day');
+    //     }
+    //
+    //     return firstDay;
+    // }
+
     /**
-     * Return an array of 'calendar days'. This array contains 42 days, starting from the first ...
-     *
-     * @todo
-     *
-     * @returns {array}
+     * @param {int|string|Moment} month|date|moment
+     * @param {int?} year
+     * @returns {Month}
      */
-    calendarDays(weekStartsOn = DAYS.MONDAY) {
-        const current = this.firstCalendarDay;
-
-        const days = [];
-
-        do {
-            days.push(current.clone());
-            current.add(1, 'day');
-        } while (days.length < 42);
-
-        return days;
-    }
-
-    /**
-     * @todo
-     * 
-     * @returns {Moment}
-     */
-    firstCalendarDay(weekStartsOn = DAYS.MONDAY) {
-        const firstDay = this.moment();
-
-        while (firstDay.day() === DAYS.SUNDAY || firstDay.day() > DAYS.MONDAY) {
-            firstDay.subtract(1, 'day');
+    static create() {
+        if (arguments.length > 2) {
+            throw new Error('`Month.create()` can only accept zero, one or two arguments.');
         }
 
-        return firstDay;
-    }
+        if (arguments.length === 2) {
+            return new Month(...arguments);
+        }
 
-    /**
-     * Factory method that recieves the same arguments as the constructor. Useful for chaining.
-     *
-     * @param {int} month
-     * @param {int} year
-     * @returns {Month}
-     */
-    static create(month, year) {
-        return new Month(month, year);
-    }
+        if (arguments.length === 1) {
 
-    /**
-     * Create a new instance from a moment object.
-     *
-     * @param {Moment} moment
-     * @returns {Month}
-     */
-    static createFromMoment(date) {
-        return new Month(date.month(), date.year());
-    }
+            const argument = arguments[0];
 
-    /**
-     * Create a new instance for this month.
-     *
-     * @return {Month}
-     */
-    static createThisMonth() {
-        const now = moment();
+            if (typeof argument === 'string') {
+                const dateParts = argument.split('-');
 
-        return Month.createFromMoment(now);
+                return new Month(dateParts[0], dateParts[1]);
+            }
+
+            if (moment.isMoment(argument)) {
+                return new Month(argument.month(), argument.year());
+            }
+
+            if (argument instanceof Date) {
+                return new Month(argument.getMonth(), argument.getYear());
+            }
+
+            throw new Error('Invalid argument specified for `Month.create()`.');
+        }
+
+        return Month.thisMonth();
     }
 }
 

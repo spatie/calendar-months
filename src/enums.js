@@ -10,8 +10,8 @@ const MONTHS = {
     SEPTEMBER: 8,
     OCTOBER: 9,
     NOVEMBER: 10,
-    DECEMBER: 11
-}
+    DECEMBER: 11,
+};
 
 const DAYS = {
     SUNDAY: 0,
@@ -20,7 +20,7 @@ const DAYS = {
     WEDNESDAY: 3,
     THURSDAY: 4,
     FRIDAY: 5,
-    SATURDAY: 6
-}
+    SATURDAY: 6,
+};
 
-export default { MONTHS, DAYS }
+export { MONTHS, DAYS };
