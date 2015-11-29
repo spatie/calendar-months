@@ -100,6 +100,7 @@ describe('It returns a new instance', () => {
 describe('It throws an error when', () => {
 
     it('an invalid month is provided', () => {
+
         assert.throw(() => new Month(13, 2015));
         assert.throw(() => new Month(12, 2015));
         assert.throw(() => new Month(-2, 2015));
@@ -107,10 +108,12 @@ describe('It throws an error when', () => {
     });
 
     it('an invalid year is provided', () => {
+
         assert.throw(() => new Month(1, null));
     });
 
     it('an non-supported argument is passed to `create`', () => {
+        
         assert.throw(() => Month.create([1, 2015]));
         assert.throw(() => Month.create(() => [1, 2015]));
         assert.throw(() => Month.create('january 2015'));
