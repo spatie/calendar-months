@@ -1,42 +1,79 @@
 import { DAYS } from './enums';
 import moment from 'moment';
+import validate from './validate';
 
+/**
+ * @class Month
+ *
+ * @property {number} month
+ * @property {number} year
+ */
 class Month {
     /**
-     * @param {int} month
-     * @param {int} year
-     * @returns {Month}
+     * Create a new instance of Month from a month and a year.
+     *
+     * @param {number} month - A number from 0 to 11.
+     * @param {number} year - A valid year number.
+     *
+     * @return {Month}
      */
     constructor(month, year) {
-        // Creating a moment instance here for free validation.
-        const date = moment([year, month, 1]);
 
-        this.month = date.month();
-        this.year = date.year();
+        month = parseInt(month);
+        year = parseInt(year);
+
+        if (! validate.isValidMonthNumber(month)) {
+            throw new Error('Argument `month` has to be a number between 0 and 11.');
+        }
+
+        if (! validate.isValidYearNumber(year)) {
+            throw new Error('Argument `year` has to be a number.');
+        }
+
+        this.month = month;
+        this.year = year;
     }
 
     /**
-     * @returns {Month}
+     * Return a fresh instance of the Month object.
+     *
+     * @return {Month}
+     */
+    clone() {
+        return new Month(this.month, this.year);
+    }
+
+    /**
+     * Create a new instance of Month, this essentially creates a clone of the object.
+     *
+     * @return {Month}
      */
     thisMonth() {
-        return Month.create(this.moment());
+        return this.clone();
     }
 
     /**
-     * Create a new instance for this month.
+     * Create a new instance for the current month.
      *
-     * @returns {Month}
+     * @return {Month}
+     */
+    static now() {
+        return Month.create(moment());
+    }
+
+    /**
+     * Create a new instance for the current month.
+     *
+     * @return {Month}
      */
     static thisMonth() {
-        const now = moment();
-
-        return Month.create(now);
+        return Month.now();
     }
 
     /**
-     * Return a new Month instance, set one month later than the current instance.
+     * Return a new Month instance, set one month later than now.
      *
-     * @returns {Month}
+     * @return {Month}
      */
     nextMonth() {
         return Month.create(this.moment().add(1, 'month'));
@@ -45,7 +82,7 @@ class Month {
     /**
      * Return a new Month instance, set one month later than now.
      *
-     * @returns {Month}
+     * @return {Month}
      */
     static nextMonth() {
         return Month.thisMonth().nextMonth();
@@ -54,7 +91,7 @@ class Month {
     /**
      * Return a new Month instance, set one month earlier than the current instance.
      *
-     * @returns {Month}
+     * @return {Month}
      */
     lastMonth() {
         return Month.create(this.moment().add(-1, 'month'));
@@ -63,17 +100,18 @@ class Month {
     /**
      * Return a new Month instance, set one month earlier than now.
      *
-     * @returns {Month}
+     * @return {Month}
      */
     static lastMonth() {
         return Month.thisMonth().lastMonth();
     }
 
     /**
-     * Format the month's date. Defaults to YYYY-MM
+     * Format the month's date. Uses ISO 8601, defaults to YYYY-MM.
      *
-     * @param {string} format
-     * @returns {int}
+     * @param {string} format - The format you want to return.
+     *
+     * @return {number}
      */
     format(format = 'YYYY-MM') {
         return this.moment().format(format);
@@ -83,14 +121,28 @@ class Month {
      * Generate a new moment instance set to the first day of this month.
      * Since moment.js creates mutable instances, it's very important to always return a new one here.
      *
-     * @returns {Moment}
+     * @return {Moment}
      */
     moment() {
         return moment([this.year, this.month, 1]);
     }
 
     /**
-     * @returns {Moment}
+     * Return a moment instance of the first day of the month.
+     *
+     * @return {Moment}
+     */
+    firstDay() {
+        return this.moment();
+    }
+
+    /**
+     * Return a moment instance of the first 'calendar day' of the month.
+     *
+     * This function is provided for generating UI's. A standard calendar UI requires 42-day months, always starting on
+     * a specific day of the week.
+     *
+     * @return {Moment}
      */
     firstCalendarDay(weekStartsOn = null) {
         weekStartsOn = weekStartsOn || Month.weekStartsOn;
@@ -105,11 +157,9 @@ class Month {
     }
 
     /**
-     * Return an array of 'calendar days'. This array contains 42 days, starting from the first ...
+     * Return an array of 'calendar days'. This array contains 42 days, starting on a specific day of the week.
      *
-     * @todo
-     *
-     * @returns {array}
+     * @return {Moment[]}
      */
     calendarDays(weekStartsOn = null) {
         weekStartsOn = weekStartsOn || Month.weekStartsOn;
@@ -127,9 +177,16 @@ class Month {
     }
 
     /**
-     * @param {int|string|Moment} month|date|moment
-     * @param {int?} year
-     * @returns {Month}
+     * Creates a new instance of Month from various formats.
+     *
+     * 		- {number}, {number} creates a Month from a month and year number.
+     * 		- {string} creates a Month from a string which is equal to 'YYYY-MM' or starts with 'YYYY-MM-'.
+     * 		- {Moment} creates a Month for the month in which the Moment instance resides.
+     *
+     * @param {(number|string|Moment)} argument
+     * @param {?number} year
+     *
+     * @return {Month}
      */
     static create() {
         if (arguments.length > 2) {
@@ -142,20 +199,20 @@ class Month {
 
         if (arguments.length === 1) {
 
-            const argument = arguments[0];
+            const [ argument ] = arguments;
 
-            if (typeof argument === 'string') {
+            if (validate.isString(argument)) {
                 const dateParts = argument.split('-');
 
                 return new Month(dateParts[1] - 1, dateParts[0]);
             }
 
-            if (moment.isMoment(argument)) {
+            if (validate.isMoment(argument)) {
                 return new Month(argument.month(), argument.year());
             }
 
-            if (argument instanceof Date) {
-                return new Month(argument.getMonth(), argument.getYear());
+            if (validate.isDate(argument)) {
+                return new Month(argument.getMonth(), argument.getFullYear());
             }
 
             throw new Error('Invalid argument specified for `Month.create()`.');
@@ -165,6 +222,11 @@ class Month {
     }
 }
 
+/**
+ * Default setting for the first day of the week.
+ *
+ * @type {number} - A number from 0 to 6, 0 being Sunday.
+ */
 Month.weekStartsOn = DAYS.SUNDAY;
 
 export default Month;
