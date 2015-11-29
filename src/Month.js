@@ -220,6 +220,31 @@ class Month {
 
         return Month.thisMonth();
     }
+
+    /**
+     * Check whether a day in the form of a Moment instance is in this month.
+     *
+     * @param {Moment} day
+     *
+     * @return {bool}
+     */
+    containsDay(day) {
+        return (
+            day.month() === this.month &&
+            day.year() === this.year
+        );
+    }
+
+    /**
+     * Check whether a day in the form of a Moment instance is not in this month.
+     *
+     * @param {Moment} day
+     *
+     * @return {bool}
+     */
+    doesntContainDay(day) {
+        return ! this.containsDay(day);
+    }
 }
 
 /**

@@ -92,3 +92,32 @@ describe('It generates an array for a calendar month', () => {
         });
     });
 });
+
+describe('It can check whether a month', () => {
+
+    it('contains a day', () => {
+
+        const cases = [
+            [ new Month(MONTHS.SEPTEMBER, 2015), moment('2015-09-12') ],
+            [ new Month(MONTHS.FEBRUARY, 1992), moment('1992-02-01') ],
+            [ new Month(MONTHS.DECEMBER, 2019), moment('2019-12-30') ],
+        ];
+
+        cases.forEach(([ month, day ]) => {
+            assert.isTrue(month.containsDay(day));
+        });
+    });
+
+    it('doesn\'t contain a day', () => {
+
+        const cases = [
+            [ new Month(MONTHS.SEPTEMBER, 2015), moment('2014-09-12') ],
+            [ new Month(MONTHS.FEBRUARY, 1992), moment('1992-01-31') ],
+            [ new Month(MONTHS.DECEMBER, 2019), moment('2019-11-30') ],
+        ];
+
+        cases.forEach(([ month, day ]) => {
+            assert.isFalse(month.containsDay(day));
+        });
+    });
+});
