@@ -93,8 +93,6 @@ describe('It returns a new instance', () => {
         assert.equal(thisMonth.month, now.getMonth());
         assert.equal(thisMonth.year, now.getFullYear());
     });
-
-
 });
 
 describe('It throws an error when', () => {
