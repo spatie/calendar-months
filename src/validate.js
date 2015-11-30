@@ -4,6 +4,7 @@ import moment from 'moment';
  * Determine whether the object is a string.
  *
  * @param {mixed} object
+ *
  * @return {bool}
  */
 const isString = (object) => typeof object === 'string';
@@ -12,6 +13,7 @@ const isString = (object) => typeof object === 'string';
  * Determine whether the object is an instance of Moment.
  *
  * @param {mixed} object
+ *
  * @return {bool}
  */
 const isMoment = (object) => moment.isMoment(object);
@@ -20,6 +22,7 @@ const isMoment = (object) => moment.isMoment(object);
  * Determine whether the object is an instance of Date (JavaScript standard library).
  *
  * @param {mixed} object
+ *
  * @return {bool}
  */
 const isDate = (object) => object instanceof Date;
