@@ -1,11 +1,9 @@
 # moment-months
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/moment-months.svg?style=flat-square)](https://packagist.org/packages/spatie/moment-months)
+[![Latest Version on NPM](https://img.shields.io/npm/v/moment-months.svg?style=flat-square)](https://npmjs.com/package/moment-months)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/spatie/moment-months/master.svg?style=flat-square)](https://travis-ci.org/spatie/moment-months)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/xxxxxxxxx.svg?style=flat-square)](https://insight.sensiolabs.com/projects/xxxxxxxxx)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/moment-months.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/moment-months)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/moment-months.svg?style=flat-square)](https://packagist.org/packages/spatie/moment-months)
+[![Code Climate](https://img.shields.io/codeclimate/github/spatie/moment-months.svg?style=flat-square)](https://img.shields.io/codeclimate/github/spatie/moment-months.svg)
 
 *Work in progress*
 

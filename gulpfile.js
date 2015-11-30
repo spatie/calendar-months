@@ -30,7 +30,10 @@ gulp.task('test', () => {
 
     if (WATCHING) {
         test().on('error', () => {});
-        return gulp.watch(['src/**/*.js', 'test/**/*.js'], () => test().on('error', () => {}));
+        return gulp.watch(
+            ['src/**/*.js', 'test/**/*.js'],
+            () => test().on('error', () => {})
+        );
     }
 
     return test().on('error', () => process.exit(1));
