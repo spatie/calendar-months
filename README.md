@@ -1,9 +1,9 @@
-# moment-months
+# calendar-months
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/moment-months.svg?style=flat-square)](https://npmjs.com/package/moment-months)
+[![Latest Version on NPM](https://img.shields.io/npm/v/calendar-months.svg?style=flat-square)](https://npmjs.com/package/calendar-months)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/spatie/moment-months/master.svg?style=flat-square)](https://travis-ci.org/spatie/moment-months)
-[![Code Climate](https://img.shields.io/codeclimate/github/spatie/moment-months.svg?style=flat-square)](https://img.shields.io/codeclimate/github/spatie/moment-months.svg)
+[![Build Status](https://img.shields.io/travis/spatie/calendar-months/master.svg?style=flat-square)](https://travis-ci.org/spatie/calendar-months)
+[![Code Climate](https://img.shields.io/codeclimate/github/spatie/calendar-months.svg?style=flat-square)](https://img.shields.io/codeclimate/github/spatie/calendar-months.svg)
 
 *Work in progress*
 
@@ -14,7 +14,7 @@ Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview 
 You can install the package via npm:
 
 ```bash
-$ npm install moment-months
+$ npm install calendar-months
 ```
 
 ## Usage

@@ -1,15 +1,15 @@
 {
-  "name": "moment-months",
+  "name": "calendar-months",
   "version": "1.0.0",
   "description": ":package_description",
-  "main": "lib/moment-months.js",
+  "main": "lib/calendar-months.js",
   "scripts": {
     "test": "gulp lint && gulp test",
     "prepublish": "npm test && gulp build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/spatie/moment-months.git"
+    "url": "https://github.com/spatie/calendar-months.git"
   },
   "keywords": [
     "spatie"
@@ -17,9 +17,9 @@
   "author": "Sebastian De Deyne",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/spatie/moment-months/issues"
+    "url": "https://github.com/spatie/calendar-months/issues"
   },
-  "homepage": "https://github.com/spatie/moment-months",
+  "homepage": "https://github.com/spatie/calendar-months",
   "devDependencies": {
     "babel": "^6.0.0",
     "babel-core": "^6.2.1",
