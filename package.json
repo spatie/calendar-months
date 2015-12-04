@@ -12,7 +12,10 @@
     "url": "https://github.com/spatie/calendar-months.git"
   },
   "keywords": [
-    "spatie"
+    "spatie",
+    "calendar",
+    "date",
+    "moment"
   ],
   "author": "Sebastian De Deyne",
   "license": "MIT",
