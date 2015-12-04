@@ -1,7 +1,7 @@
 {
   "name": "calendar-months",
   "version": "0.1.0",
-  "description": "Month class with specialised functions for generating calendar user interfaces",
+  "description": "Month class with specialized functions for generating calendar user interfaces",
   "main": "lib/calendar-months.js",
   "scripts": {
     "test": "gulp lint && gulp test",
