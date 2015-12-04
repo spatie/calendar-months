@@ -52,7 +52,7 @@ describe('It returns the first calendar day', () => {
     });
 });
 
-describe('It generates an array for a calendar month', () => {
+describe('It generates an array of weeks for a calendar month', () => {
 
     it('with weeks starting on a Sunday (default)', () => {
 
@@ -89,6 +89,28 @@ describe('It generates an array for a calendar month', () => {
             assert.lengthOf(days, 42);
             assert.equal(days[0].format('YYYY-MM-DD'), start);
             assert.equal(days[41].format('YYYY-MM-DD'), end);
+        });
+    });
+});
+
+describe('It generates an array of weeks for a calendar month', () => {
+
+    it('with weeks starting on a Sunday (default)', () => {
+
+        const cases = [
+            [ Month.create(MONTHS.JANUARY, 2015), '2014-12-28', '2015-02-07' ],
+            [ Month.create(MONTHS.FEBRUARY, 2015), '2015-02-01', '2015-03-14' ],
+            [ Month.create(MONTHS.JUNE, 2015), '2015-05-31', '2015-07-11' ],
+            [ Month.create(MONTHS.FEBRUARY, 2016), '2016-01-31', '2016-03-12' ],
+            [ Month.create(MONTHS.MARCH, 2016), '2016-02-28', '2016-04-09' ],
+        ];
+
+        cases.forEach(([ month, start, end ]) => {
+            const weeks = month.calendarWeeks(DAYS.SUNDAY);
+
+            assert.lengthOf(weeks, 6);
+            assert.equal(weeks[0][0].format('YYYY-MM-DD'), start);
+            assert.equal(weeks[5][6].format('YYYY-MM-DD'), end);
         });
     });
 });

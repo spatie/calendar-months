@@ -32,9 +32,14 @@ gulp.task('test', () => {
         test().on('error', () => {});
         return gulp.watch(
             ['src/**/*.js', 'test/**/*.js'],
-            () => test().on('error', () => {})
+            () => test().on('error', (error) => {
+                console.log(error);
+            })
         );
     }
 
-    return test().on('error', () => process.exit(1));
+    return test().on('error', (error) => {
+        console.log(error);
+        process.exit(1);
+    });
 });

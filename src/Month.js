@@ -181,6 +181,22 @@ class Month {
     }
 
     /**
+     * Return an array of 'calendar weeks'. This array contains 6 weeks, with
+     * days starting on a specific day of the week.
+     *
+     * @return {Moment[][]}
+     */
+    calendarWeeks(weekStartsOn = null) {
+        const weeks = [];
+
+        for (let i = 0; i < 6; i++) {
+            weeks.push(this.calendarDays(weekStartsOn).slice(i * 7, i * 7 + 7));
+        }
+
+        return weeks;
+    }
+
+    /**
      * Creates a new instance of Month from various formats.
      *
      * 		- {number}, {number}: creates a Month from a month and year number.
