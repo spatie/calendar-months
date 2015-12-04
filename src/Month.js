@@ -44,7 +44,8 @@ class Month {
     }
 
     /**
-     * Create a new instance of Month, this essentially creates a clone of the object.
+     * Create a new instance of Month, this essentially creates a clone of the
+     * object.
      *
      * @return {Month}
      */
@@ -89,7 +90,8 @@ class Month {
     }
 
     /**
-     * Return a new Month instance, set one month earlier than the current instance.
+     * Return a new Month instance, set one month earlier than the current
+     * instance.
      *
      * @return {Month}
      */
@@ -119,7 +121,8 @@ class Month {
 
     /**
      * Generate a new moment instance set to the first day of this month.
-     * Since moment.js creates mutable instances, it's very important to always return a new one here.
+     * Since moment.js creates mutable instances, it's very important to always
+     * return a new one here.
      *
      * @return {Moment}
      */
@@ -139,8 +142,8 @@ class Month {
     /**
      * Return a moment instance of the first 'calendar day' of the month.
      *
-     * This function is provided for generating UI's. A standard calendar UI requires 42-day months, always starting on
-     * a specific day of the week.
+     * This function is provided for generating UI's. A standard calendar UI
+     * requires 42-day months, always starting on a specific day of the week.
      *
      * @return {Moment}
      */
@@ -157,7 +160,8 @@ class Month {
     }
 
     /**
-     * Return an array of 'calendar days'. This array contains 42 days, starting on a specific day of the week.
+     * Return an array of 'calendar days'. This array contains 42 days,
+     * starting on a specific day of the week.
      *
      * @return {Moment[]}
      */
@@ -179,9 +183,10 @@ class Month {
     /**
      * Creates a new instance of Month from various formats.
      *
-     * 		- {number}, {number} creates a Month from a month and year number.
-     * 		- {string} creates a Month from a string which is equal to 'YYYY-MM' or starts with 'YYYY-MM-'.
-     * 		- {Moment} creates a Month for the month in which the Moment instance resides.
+     * 		- {number}, {number}: creates a Month from a month and year number.
+     * 		- {string}: creates a Month from a string which is equal to 'YYYY-MM'
+     * 		            or starts with 'YYYY-MM-'.
+     * 		- {Moment}: creates a Month for the month in which the Moment instance resides.
      *
      * @param {(number|string|Moment)} argument
      * @param {?number} year
