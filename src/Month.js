@@ -220,7 +220,7 @@ class Month {
 
         if (arguments.length === 1) {
 
-            const [ argument ] = arguments;
+            const argument = arguments[0];
 
             if (validate.isString(argument)) {
                 const dateParts = argument.split('-');

@@ -1,6 +1,6 @@
 {
   "name": "calendar-months",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Month class with specialized functions for generating calendar user interfaces",
   "main": "lib/Month.js",
   "scripts": {
