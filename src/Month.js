@@ -100,12 +100,30 @@ class Month {
     }
 
     /**
+     * Alias for `lastMonth`.
+     *
+     * @return {Month}
+     */
+    previousMonth() {
+        return this.lastMonth();
+    }
+
+    /**
      * Return a new Month instance, set one month earlier than now.
      *
      * @return {Month}
      */
     static lastMonth() {
         return Month.thisMonth().lastMonth();
+    }
+
+    /**
+     * Alias for `static lastMonth`.
+     *
+     * @return {Month}
+     */
+    static previousMonth() {
+        return Month.lastMonth();
     }
 
     /**
