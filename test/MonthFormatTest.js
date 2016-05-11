@@ -1,7 +1,6 @@
 import { assert } from 'chai';
-import { MONTHS } from '../src/enums';
-import moment from 'moment';
 import Month from '../src/Month';
+import { MONTHS } from '../src/enums';
 
 describe('It can be formatted to', () => {
 

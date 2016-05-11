@@ -1,5 +1,5 @@
-import { assert } from 'chai';
 import { DAYS, MONTHS } from '../src/enums';
+import { assert } from 'chai';
 import moment from 'moment';
 import Month from '../src/Month';
 
