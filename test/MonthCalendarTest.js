@@ -142,4 +142,28 @@ describe('It can check whether a month', () => {
             assert.isFalse(month.containsDay(day));
         });
     });
+
+    it('is the current month', () => {
+
+        assert.isTrue(Month.thisMonth().isThisMonth());
+        assert.isFalse(Month.nextMonth().isThisMonth());
+        assert.isFalse(Month.lastMonth().isThisMonth());
+    });
+
+    it('is in the future', () => {
+
+        assert.isTrue(Month.nextMonth().isFuture());
+        assert.isTrue(Month.nextMonth().nextMonth().isFuture());
+        assert.isFalse(Month.thisMonth().isFuture());
+        assert.isFalse(Month.lastMonth().isFuture());
+        assert.isFalse(Month.lastMonth().lastMonth().isFuture());
+    });
+
+    it('is in the past', () => {
+
+        assert.isTrue(Month.lastMonth().isPast());
+        assert.isTrue(Month.lastMonth().lastMonth().isPast());
+        assert.isFalse(Month.thisMonth().isPast());
+        assert.isFalse(Month.nextMonth().nextMonth().isPast());
+    });
 });

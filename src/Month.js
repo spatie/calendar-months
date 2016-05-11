@@ -284,6 +284,33 @@ class Month {
     doesntContainDay(day) {
         return ! this.containsDay(day);
     }
+
+    /**
+     * Check whether the month instance is the current month in time.
+     *
+     * @return {bool}
+     */
+    isThisMonth() {
+        return this.containsDay(moment());
+    }
+
+    /**
+     * Check whether the month is in the future. Note: the current month will never be in the future.
+     *
+     * @return {bool}
+     */
+    isFuture() {
+        return this.moment().diff(Month.now().nextMonth().moment(), 'months') > -1;
+    }
+
+    /**
+     * Check whether the month is in the future. Note: the current month will never be in the future.
+     *
+     * @return {bool}
+     */
+    isPast() {
+        return this.moment().diff(Month.now().lastMonth().moment(), 'months') < 1;
+    }
 }
 
 /**
