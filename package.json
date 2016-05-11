@@ -7,7 +7,7 @@
     "test": "mocha --compilers js:babel-register",
     "lint": "eslint src test",
     "build": "babel src --out-dir lib",
-    "prepublish": "npm test && gulp build"
+    "prepublish": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/spatie/calendar-months",
   "devDependencies": {
     "babel": "^6.3.26",
+    "babel-cli": "^6.8.0",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
