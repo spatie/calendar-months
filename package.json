@@ -4,7 +4,9 @@
   "description": "Month class with specialized functions for generating calendar user interfaces",
   "main": "lib/Month.js",
   "scripts": {
-    "test": "gulp lint && gulp test",
+    "test": "mocha --compilers js:babel-register",
+    "lint": "eslint src",
+    "build": "babel src --out-dir lib",
     "prepublish": "npm test && gulp build"
   },
   "repository": {
@@ -24,14 +26,13 @@
   },
   "homepage": "https://github.com/spatie/calendar-months",
   "devDependencies": {
-    "babel": "^6.0.0",
-    "babel-core": "^6.2.1",
-    "babel-preset-es2015": "^6.1.18",
+    "babel": "^6.3.26",
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.4.3",
     "chai": "^3.4.1",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.0",
-    "gulp-eslint": "^1.0.0",
-    "gulp-mocha": "^2.2.0"
+    "eslint": "^2.9.0"
   },
   "dependencies": {
     "moment": "^2.10.6"
