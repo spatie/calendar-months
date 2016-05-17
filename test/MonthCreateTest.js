@@ -1,16 +1,16 @@
 import { assert } from 'chai';
 import moment from 'moment';
 import Month from '../src/Month';
-import { MONTHS } from '../src/enums';
+import { months } from '../src/enums';
 
 describe('It returns a new instance', () => {
 
     it('through the `new` keyword', () => {
 
         const cases = [
-            [ MONTHS.SEPTEMBER, 2015 ],
-            [ MONTHS.FEBRUARY, 1992 ],
-            [ MONTHS.DECEMBER, 2019 ],
+            [ months.SEPTEMBER, 2015 ],
+            [ months.FEBRUARY, 1992 ],
+            [ months.DECEMBER, 2019 ],
         ];
 
         cases.forEach(([ monthNumber, yearNumber ]) => {
@@ -24,9 +24,9 @@ describe('It returns a new instance', () => {
     it('by passing month and year numbers to the `create` method', () => {
 
         const cases = [
-            [ MONTHS.SEPTEMBER, 2015 ],
-            [ MONTHS.FEBRUARY, 1992 ],
-            [ MONTHS.DECEMBER, 2019 ],
+            [ months.SEPTEMBER, 2015 ],
+            [ months.FEBRUARY, 1992 ],
+            [ months.DECEMBER, 2019 ],
         ];
 
         cases.forEach(([ monthNumber, yearNumber ]) => {
@@ -40,9 +40,9 @@ describe('It returns a new instance', () => {
     it('from a `moment` object', () => {
 
         const cases = [
-            [ moment('2015-09-17'), MONTHS.SEPTEMBER, 2015 ],
-            [ moment('1992-02-01'), MONTHS.FEBRUARY, 1992 ],
-            [ moment('2019-12-25'), MONTHS.DECEMBER, 2019 ],
+            [ moment('2015-09-17'), months.SEPTEMBER, 2015 ],
+            [ moment('1992-02-01'), months.FEBRUARY, 1992 ],
+            [ moment('2019-12-25'), months.DECEMBER, 2019 ],
         ];
 
         cases.forEach(([ moment, monthNumber, yearNumber ]) => {
@@ -56,9 +56,9 @@ describe('It returns a new instance', () => {
     it('from a `date` object', () => {
 
         const cases = [
-            [ new Date('2015-09-17'), MONTHS.SEPTEMBER, 2015 ],
-            [ new Date('1992-02-01'), MONTHS.FEBRUARY, 1992 ],
-            [ new Date('2019-12-25'), MONTHS.DECEMBER, 2019 ],
+            [ new Date('2015-09-17'), months.SEPTEMBER, 2015 ],
+            [ new Date('1992-02-01'), months.FEBRUARY, 1992 ],
+            [ new Date('2019-12-25'), months.DECEMBER, 2019 ],
         ];
 
         cases.forEach(([ date, monthNumber, yearNumber ]) => {
@@ -72,9 +72,9 @@ describe('It returns a new instance', () => {
     it('from a date string', () => {
 
         const cases = [
-            [ '2015-09-17', MONTHS.SEPTEMBER, 2015 ],
-            [ '1992-02-01', MONTHS.FEBRUARY, 1992 ],
-            [ '2019-12-25', MONTHS.DECEMBER, 2019 ],
+            [ '2015-09-17', months.SEPTEMBER, 2015 ],
+            [ '1992-02-01', months.FEBRUARY, 1992 ],
+            [ '2019-12-25', months.DECEMBER, 2019 ],
         ];
 
         cases.forEach(([ date, monthNumber, yearNumber ]) => {

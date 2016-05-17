@@ -1,4 +1,4 @@
-const MONTHS = {
+const months = {
     JANUARY: 0,
     FEBRUARY: 1,
     MARCH: 2,
@@ -13,7 +13,7 @@ const MONTHS = {
     DECEMBER: 11,
 };
 
-const DAYS = {
+const days = {
     SUNDAY: 0,
     MONDAY: 1,
     TUESDAY: 2,
@@ -23,4 +23,4 @@ const DAYS = {
     SATURDAY: 6,
 };
 
-export { MONTHS, DAYS };
+export { months, days };

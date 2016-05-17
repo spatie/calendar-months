@@ -1,4 +1,4 @@
-import { DAYS } from './enums';
+import { days } from './enums';
 import moment from 'moment';
 import validate from './validate';
 
@@ -165,9 +165,7 @@ class Month {
      *
      * @return {Moment}
      */
-    firstCalendarDay(weekStartsOn = null) {
-        weekStartsOn = weekStartsOn || Month.weekStartsOn;
-
+    firstCalendarDay(weekStartsOn = Month.weekStartsOn) {
         const firstDay = this.moment();
 
         while (firstDay.day() !== weekStartsOn) {
@@ -183,9 +181,7 @@ class Month {
      *
      * @return {Moment[]}
      */
-    calendarDays(weekStartsOn = null) {
-        weekStartsOn = weekStartsOn || Month.weekStartsOn;
-
+    calendarDays(weekStartsOn = Month.weekStartsOn) {
         const current = this.firstCalendarDay(weekStartsOn);
 
         const days = [];
@@ -204,7 +200,7 @@ class Month {
      *
      * @return {Moment[][]}
      */
-    calendarWeeks(weekStartsOn = null) {
+    calendarWeeks(weekStartsOn = Month.weekStartsOn) {
         const weeks = [];
 
         for (let i = 0; i < 6; i++) {
@@ -318,6 +314,6 @@ class Month {
  *
  * @type {number} - A number from 0 to 6, 0 being Sunday.
  */
-Month.weekStartsOn = DAYS.SUNDAY;
+Month.weekStartsOn = days.SUNDAY;
 
 export default Month;
