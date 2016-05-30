@@ -1,6 +1,7 @@
-import Month, { days, months } from '../src/Month';
+import { days, months } from '../src/enums';
 import { assert } from 'chai';
 import moment from 'moment';
+import Month from '../src/Month';
 
 describe('It returns the first calendar day', () => {
 
