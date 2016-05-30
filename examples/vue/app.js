@@ -7,7 +7,9 @@ new Vue({
     el: '#calendar',
 
     template: `
-        <calendar :month="month"></calendar>
+        <div>
+            <calendar :month="month"></calendar>
+        </div>
     `,
 
     components: {

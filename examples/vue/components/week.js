@@ -1,4 +1,4 @@
-import moment from 'moment';
+import Day from './day';
 
 export default {
 
@@ -7,20 +7,13 @@ export default {
     template: `
         <tr>
             <td v-for="day in days">
-                <span
-                    :class="{
-                        'not-in-month': this.month.doesntContainDay(day),
-                        'current': isToday(day),
-                    }"
-                >
-                    {{ day.format('dd') }}
-                </span>
+                <day :date="day" :month="month"></day>
             </td>
         </tr>
     `,
 
-    methods: {
-        isToday: day => moment().isSame(day, 'day'),
+    components: {
+        Day,
     },
 
 };
