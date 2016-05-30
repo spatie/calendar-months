@@ -1,16 +1,19 @@
 {
   "scripts": {
     "lint": "eslint .",
-    "build": "babel . --out-dir build"
+    "build": "browserify app.jsx -o build/app.js --extension=.jsx -t [ babelify --presets [ es2015 react ] ]"
   },
   "dependencies": {
     "calendar-months": "^1.0.0-beta.1",
     "moment": "^2.10.6",
-    "vue": "^1.0.0"
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "eslint": "^2.9.0"
   }
 }
