@@ -1,8 +1,9 @@
 {
   "name": "calendar-months",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Month class with specialized functions for generating calendar user interfaces",
-  "main": "lib/Month.js",
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
     "lint": "eslint src test",

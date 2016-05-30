@@ -1,4 +1,4 @@
-import { days } from 'calendar-months/lib/enums';
+import { days } from 'calendar-months';
 import Week from './week';
 
 export default {

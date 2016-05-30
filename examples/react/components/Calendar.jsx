@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { days } from 'calendar-months/lib/enums';
+import { days } from 'calendar-months';
 import Week from './Week';
 
 class Calendar extends Component {

@@ -73,8 +73,7 @@ new Month(0, 2016);
 Since javascript uses a 0-based index for months, the package also ships with a set of enums to improve clarity when dealing with month numbers.
 
 ```js
-import Month from 'calendar-months';
-import { months } from 'calendar-months/lib/enums';
+import Month, { months } from 'calendar-months';
 
 new Month(months.JANUARY, 2016);
 // => January 2016
@@ -161,11 +160,10 @@ const weeksInJune = Month.create('2016-06').calendarWeeks();
 // => [ [ sun, mon, tue, wed, thu, fri, sat ], ... ]
 ```
 
-If you want your calendars weeks to start on a different day, you can pass in a day as the first parameter. By default, a week starts on Sunday.
+If you want your calendars weeks to start on a different day, you can pass in a day as the first parameter. By default, a week starts on Sunday. Since javascript uses a 0-based index for days, the package also ships with a set of enums to improve clarity when dealing with day numbers.
 
 ```js
-import { days } from './enums';
-import Month from 'calendar-months';
+import Month, { days } from 'calendar-months';
 
 const weeksInJune = Month.create('2016-06').calendarWeeks(days.MONDAY);
 
@@ -175,8 +173,7 @@ const weeksInJune = Month.create('2016-06').calendarWeeks(days.MONDAY);
 If you want to retrieve all days without chunking them by week, there's a `calendarDays` method. This method also optionally accepts a starting day as it's first parameter.
 
 ```js
-import { days } from './enums';
-import Month from 'calendar-months';
+import Month, { days } from 'calendar-months';
 
 const daysInJune = Month.create('2016-06').calendarDays(days.MONDAY);
 
