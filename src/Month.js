@@ -160,9 +160,6 @@ class Month {
     /**
      * Return a moment instance of the first 'calendar day' of the month.
      *
-     * This function is provided for generating UI's. A standard calendar UI
-     * requires 42-day months, always starting on a specific day of the week.
-     *
      * @return {Moment}
      */
     firstCalendarDay(weekStartsOn = Month.weekStartsOn) {
