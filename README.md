@@ -55,6 +55,8 @@ $ npm install calendar-months
 
 The `examples` directory in this repository contains Vue and a React example calendars.
 
+To open an example, navigate to it's directory to run `npm install` and `npm run build`, then open the `index.html` file in your browser.
+
 ## Usage
 
 ### Creating Month Instances
