@@ -8,7 +8,7 @@ import validate from './validate';
  * @property {number} month
  * @property {number} year
  */
-class Month {
+export class Month {
     /**
      * Create a new instance of Month from a month and a year.
      *
