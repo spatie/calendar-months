@@ -1,7 +1,6 @@
+import Month, { months } from '../src/index';
 import { assert } from 'chai';
 import moment from 'moment';
-import Month from '../src/Month';
-import { months } from '../src/enums';
 
 describe('It returns a new instance', () => {
 
