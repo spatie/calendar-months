@@ -1,5 +1,5 @@
 import { days, months } from './enums';
-import Month from './Month';
+import Month from './month';
 
 export default Month;
 
