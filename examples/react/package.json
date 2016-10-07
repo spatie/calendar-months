@@ -4,8 +4,8 @@
     "build": "browserify app.jsx -o build/app.js --extension=.jsx -t [ babelify --presets [ es2015 react ] ]"
   },
   "dependencies": {
-    "calendar-months": "^1.0.0-beta.2",
-    "moment": "^2.10.6",
+    "calendar-months": "^1.0.1",
+    "moment": "^2.15.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },

@@ -4,7 +4,8 @@
     "build": "browserify app.js -o build/app.js -t [ babelify --presets [ es2015 ] ]"
   },
   "dependencies": {
-    "calendar-months": "^1.0.0",
+    "calendar-months": "^1.0.1",
+    "moment": "^2.15.1",
     "vue": "^1.0.0"
   },
   "devDependencies": {
