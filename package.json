@@ -1,6 +1,6 @@
 {
   "name": "calendar-months",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Month class with specialized functions for generating calendar user interfaces",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
@@ -32,9 +32,10 @@
     "babel-register": "^6.4.3",
     "chai": "^3.4.1",
     "eslint": "^2.9.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "moment": "^2.10.6"
   },
-  "dependencies": {
+  "peerDependencies": {
     "moment": "^2.10.6"
   },
   "babel": {
